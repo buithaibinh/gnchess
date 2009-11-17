@@ -1,0 +1,248 @@
+<?xml version="1.0"?>
+<interface>
+  <requires lib="gtk+" version="2.16"/>
+  <!-- interface-naming-policy project-wide -->
+  <object class="GtkAccelGroup" id="accel_group"/>
+  <object class="GtkWindow" id="win_main">
+    <property name="resizable">False</property>
+    <property name="window_position">center</property>
+    <accel-groups>
+      <group name="accel_group"/>
+    </accel-groups>
+    <child>
+      <object class="GtkVBox" id="vbox">
+        <property name="visible">True</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkMenuBar" id="menubar">
+            <property name="visible">True</property>
+            <child>
+              <object class="GtkMenuItem" id="menu_file">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">_File</property>
+                <property name="use_underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu" id="menu1">
+                    <property name="visible">True</property>
+                    <property name="extension_events">cursor</property>
+                    <property name="accel_group">accel_group</property>
+                    <child>
+                      <object class="GtkMenuItem" id="menu_new_game">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">_New Game</property>
+                        <property name="use_underline">True</property>
+                        <child type="submenu">
+                          <object class="GtkMenu" id="menu2">
+                            <property name="visible">True</property>
+                            <property name="accel_group">accel_group</property>
+                            <child>
+                              <object class="GtkMenuItem" id="menu_new_red">
+                                <property name="visible">True</property>
+                                <property name="label" translatable="yes">Player Use _Red</property>
+                                <property name="use_underline">True</property>
+                                <accelerator key="F5" signal="activate"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkMenuItem" id="menu_new_black">
+                                <property name="visible">True</property>
+                                <property name="label" translatable="yes">Player Use _Black</property>
+                                <property name="use_underline">True</property>
+                                <accelerator key="F6" signal="activate"/>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menu_back">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">_Undo Move</property>
+                        <property name="use_underline">True</property>
+                        <accelerator key="BackSpace" signal="activate"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkSeparatorMenuItem" id="menu_line1">
+                        <property name="visible">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menu_quit">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">_Quit</property>
+                        <property name="use_underline">True</property>
+                        <accelerator key="q" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem" id="menu_settting">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">_Settings</property>
+                <property name="use_underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu" id="menu3">
+                    <property name="visible">True</property>
+                    <property name="accel_group">accel_group</property>
+                    <child>
+                      <object class="GtkMenuItem" id="menu_ai">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">_Difficulty Level</property>
+                        <property name="use_underline">True</property>
+                        <child type="submenu">
+                          <object class="GtkMenu" id="menu4">
+                            <property name="visible">True</property>
+                            <property name="accel_group">accel_group</property>
+                            <child>
+                              <object class="GtkRadioMenuItem" id="menu_ai_easy">
+                                <property name="visible">True</property>
+                                <property name="label" translatable="yes">_Easy</property>
+                                <property name="use_underline">True</property>
+                                <accelerator key="1" signal="activate"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkRadioMenuItem" id="menu_ai_normal">
+                                <property name="visible">True</property>
+                                <property name="label" translatable="yes">_Normal</property>
+                                <property name="use_underline">True</property>
+                                <property name="group">menu_ai_easy</property>
+                                <accelerator key="2" signal="activate"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkRadioMenuItem" id="menu_ai_hard">
+                                <property name="visible">True</property>
+                                <property name="label" translatable="yes">_Hard</property>
+                                <property name="use_underline">True</property>
+                                <property name="group">menu_ai_easy</property>
+                                <accelerator key="3" signal="activate"/>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="menu_size">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">_Chessboard Size</property>
+                        <property name="use_underline">True</property>
+                        <child type="submenu">
+                          <object class="GtkMenu" id="menu5">
+                            <property name="visible">True</property>
+                            <property name="accel_group">accel_group</property>
+                            <child>
+                              <object class="GtkRadioMenuItem" id="menu_size_small">
+                                <property name="visible">True</property>
+                                <property name="label" translatable="yes">_Small</property>
+                                <property name="use_underline">True</property>
+                                <accelerator key="1" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkRadioMenuItem" id="menu_size_normal">
+                                <property name="visible">True</property>
+                                <property name="label" translatable="yes">_Normal</property>
+                                <property name="use_underline">True</property>
+                                <property name="group">menu_size_small</property>
+                                <accelerator key="2" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkRadioMenuItem" id="menu_size_big">
+                                <property name="visible">True</property>
+                                <property name="label" translatable="yes">_Big</property>
+                                <property name="use_underline">True</property>
+                                <property name="group">menu_size_small</property>
+                                <accelerator key="3" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkSeparatorMenuItem" id="menu_line2">
+                        <property name="no_show_all">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkCheckMenuItem" id="menu_voice">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">_Voice</property>
+                        <property name="use_underline">True</property>
+                        <accelerator key="F8" signal="activate"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkCheckMenuItem" id="menu_music">
+                        <property name="no_show_all">True</property>
+                        <property name="label" translatable="yes">_Music</property>
+                        <property name="use_underline">True</property>
+                        <accelerator key="F9" signal="activate"/>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem" id="menu_help">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">_Help</property>
+                <property name="use_underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu" id="menu6">
+                    <property name="visible">True</property>
+                    <property name="accel_group">accel_group</property>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_about">
+                        <property name="label">gtk-about</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <property name="accel_group">accel_group</property>
+                        <accelerator key="F1" signal="activate"/>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkDrawingArea" id="board_area">
+            <property name="visible">True</property>
+          </object>
+          <packing>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkStatusbar" id="statusbar">
+            <property name="visible">True</property>
+            <property name="has_resize_grip">False</property>
+            <child>
+              <placeholder/>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>

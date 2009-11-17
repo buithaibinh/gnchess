@@ -1,0 +1,133 @@
+# Copyright (C) 2009 Thor Qin
+# This file is distributed under the same license as the cnchess package.
+# Thor Qin <thor.qin@gmail.com>, 2009.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Report-Msgid-Bugs-To: thor.qin@gmail.com\n"
+"POT-Creation-Date: 2009-11-11 13:14+0800\n"
+"PO-Revision-Date: 2009-11-11 14:17+0800\n"
+"Last-Translator: Thor Qin <thor.qin@gmail.com>\n"
+"Language-Team: Simplified Chinese <thor.qin@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: ui.cc:192 ui.cc:384
+msgid "Difficulty Level: Easy"
+msgstr "难度等级: 简单"
+
+#: ui.cc:201 ui.cc:394
+msgid "Difficulty Level: Normal"
+msgstr "难度等级: 普通"
+
+#: ui.cc:210 ui.cc:404
+msgid "Difficulty Level: Hard"
+msgstr "难度等级: 困难"
+
+#: ui.cc:262 ui.cc:448
+msgid "Chinese Chess"
+msgstr "中国象棋"
+
+#: ui.cc:450
+msgid "Thor Qin <thor.qin@gmail.com>"
+msgstr "秦诺 <thor.qin@gmail.com>"
+
+#: ui.cc:751
+msgid "Congratulations! You win!"
+msgstr "恭喜！你取得了胜利！"
+
+#: ui.cc:761 ui.cc:878
+msgid "Sorry, you can't perpetual catch or perpetual check, you lost!"
+msgstr "很遗憾，不能长打，你输了！"
+
+#: ui.cc:766 ui.cc:885
+msgid "Congratulations! Computer perpetual catch or perpetual check, You win!"
+msgstr "恭喜！计算机长打做负，你取得了胜利！"
+
+#: ui.cc:771 ui.cc:892
+msgid "The game ended in draw."
+msgstr "和局。"
+
+#: ui.cc:778 ui.cc:901
+msgid "Reached the limit steps, the game ended in draw."
+msgstr "到达限着规定，和局。"
+
+#: ui.cc:811
+msgid "Computer is thinking..."
+msgstr "计算机正在思考..."
+
+#: ui.cc:866
+msgid "Sorry, you lost!"
+msgstr "很遗憾，你输了！"
+
+#: ui.glade:22
+msgid "_File"
+msgstr "文件(_F)"
+
+#: ui.glade:32
+msgid "_New Game"
+msgstr "新游戏(_N)"
+
+#: ui.glade:41
+msgid "Player Use _Red"
+msgstr "玩家执红棋(_R)"
+
+#: ui.glade:49
+msgid "Player Use _Black"
+msgstr "玩家执黑棋(_B)"
+
+#: ui.glade:61
+msgid "_Undo Move"
+msgstr "悔棋(_U)"
+
+#: ui.glade:74
+msgid "_Quit"
+msgstr "退出(_Q)"
+
+#: ui.glade:86
+msgid "_Settings"
+msgstr "设置(_S)"
+
+#: ui.glade:95
+msgid "_Difficulty Level"
+msgstr "难度等级"
+
+#: ui.glade:104
+msgid "_Easy"
+msgstr "简单(_E)"
+
+#: ui.glade:112 ui.glade:151
+msgid "_Normal"
+msgstr "一般(_N)"
+
+#: ui.glade:121
+msgid "_Hard"
+msgstr "较难(_H)"
+
+#: ui.glade:134
+msgid "_Chessboard Size"
+msgstr "棋盘大小(_C)"
+
+#: ui.glade:143
+msgid "_Small"
+msgstr "较小(_S)"
+
+#: ui.glade:160
+msgid "_Big"
+msgstr "较大(_B)"
+
+#: ui.glade:178
+msgid "_Voice"
+msgstr "音效(_V)"
+
+#: ui.glade:186
+msgid "_Music"
+msgstr "音乐(_M)"
+
+#: ui.glade:198
+msgid "_Help"
+msgstr "帮助(_H)"

@@ -1,0 +1,18 @@
+--- icon.cc	2009-11-10 15:23:10.429799880 +0800
++++ icon_new.cc	2009-11-10 15:02:20.940601672 +0800
+@@ -1,12 +1,12 @@
+ /* GdkPixbuf RGBA C-Source image dump */
+-
++#include <glib.h>
+ #ifdef __SUNPRO_C
+ #pragma align 4 (icon_inline)
+ #endif
+ #ifdef __GNUC__
+-const guint8 icon_inline[] __attribute__ ((__aligned__ (4))) = 
++extern const guint8 icon_inline[] __attribute__ ((__aligned__ (4))) = 
+ #else
+-const guint8 icon_inline[] = 
++extern const guint8 icon_inline[] = 
+ #endif
+ { ""
+   /* Pixbuf magic (0x47646b50) */
