@@ -14,8 +14,7 @@ CC = gcc
 # CFLAGS = -DNDEBUG -O2 -Wall
 CFLAGS = -g -Wall \
 	`pkg-config gtkmm-2.4 --cflags` \
-	`pkg-config librsvg-2.0 --cflags` \
-	`pkg-config thorlib --cflags`
+	`pkg-config librsvg-2.0 --cflags`
 
 OBJECTS = ui.o engine.o icon.o ui_data.o svg_res.o
 BIN = $(DESTDIR)/usr/bin
@@ -28,7 +27,7 @@ LIBS = -lstdc++ \
 	`pkg-config gtkmm-2.4 --libs` \
 	`pkg-config gthread-2.0 --libs` \
 	`pkg-config librsvg-2.0 --libs` \
-	`pkg-config thorlib --libs`
+	-ltlib
 
 
 po_dirs := $(shell find ./po -maxdepth 1 -type d)
