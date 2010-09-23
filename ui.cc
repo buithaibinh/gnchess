@@ -22,7 +22,7 @@
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
-#include <tlib.h>
+#include <tlib/tlib.h>
 #include <librsvg/rsvg.h>
 #include <librsvg/rsvg-cairo.h>
 
@@ -123,7 +123,7 @@ inline Chess::Chess(int argc, char** argv)
 	{
 		_exe_path = argv[0];
 	}
-	tlib::replace(_exe_path, "/./", "/");
+	tlib::replace<char>(_exe_path, "/./", "/");
 	_exe_path = _exe_path.substr(0, _exe_path.rfind('/'));
 #else
 #error "not implement..."
@@ -150,10 +150,11 @@ inline Chess::Chess(int argc, char** argv)
 	{
 		_setting_file = home;
 		_setting_file += "/.chess2";
-		map<string, string> setting = tlib::load_setting(_setting_file);
+		map<string, string> setting;
+		tlib::load_setting(_setting_file, setting);
 		if (setting.find("size") != setting.end())
 		{
-			_board_size = tlib::from_string<char, int>(setting["size"]);
+			_board_size = tlib::strto<int>(setting["size"]);
 			if (_board_size < 1)
 				_board_size = 1;
 			else if (_board_size > 3)
@@ -161,16 +162,16 @@ inline Chess::Chess(int argc, char** argv)
 		}
 		if (setting.find("level") != setting.end())
 		{
-			_ai_level = tlib::from_string<char, int>(setting["level"]);
+			_ai_level = tlib::strto<int>(setting["level"]);
 			if (_ai_level < 1)
 				_ai_level = 1;
 			else if (_ai_level > 3)
 				_ai_level = 3;
 		}
 		if (setting.find("voice") != setting.end())
-			_voice = tlib::from_string<char, bool>(setting["voice"]);
+			_voice = tlib::strto<bool>(setting["voice"]);
 		if (setting.find("music") != setting.end())
-			_music = tlib::from_string<char, bool>(setting["music"]);
+			_music = tlib::strto<bool>(setting["music"]);
 	}
 
 	// 构造界面
@@ -301,10 +302,10 @@ inline void Chess::sync()
 inline Chess::~Chess()
 {
 	map<string, string> setting;
-	setting["size"] = tlib::to_string<char, int>(_board_size);
-	setting["level"] = tlib::to_string<char, int>(_ai_level);
-	setting["voice"] = tlib::to_string<char, bool>(_voice);
-	setting["music"] = tlib::to_string<char, bool>(_music);
+	setting["size"] = tlib::strfrom<int>(_board_size);
+	setting["level"] = tlib::strfrom<int>(_ai_level);
+	setting["voice"] = tlib::strfrom<bool>(_voice);
+	setting["music"] = tlib::strfrom<bool>(_music);
 
 	try
 	{

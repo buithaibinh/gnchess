@@ -8,7 +8,7 @@
 #ifndef ENGINE_H_
 #define ENGINE_H_
 
-#include <tlib.h>
+#include <tlib/tlib.h>
 #include <fstream>
 #include <vector>
 #include <memory.h>
