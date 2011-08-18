@@ -21,6 +21,8 @@
 #    include <windows.h>
 #    include <direct.h>
 #    include <limits.h>
+#    include <mmsystem.h>
+#    define sleep(n) Sleep(1000 * n)
 #  else
 #    include <linux/limits.h>
 #  endif
@@ -887,23 +889,28 @@ inline void Chess::refresh()
 
 inline void Chess::playsound(const char* filename)
 {
-#ifdef __GNUC__
 	if (_voice)
 	{
+
+#ifdef __GNUC__
 		char path_buf[PATH_MAX] = {0};
 		//strcpy(path_buf, _exe_path.c_str());
 		strcpy(path_buf, "/usr/share/cnchess/sound/");
 		strcat(path_buf, filename);
+#ifdef __MINGW32__
+		PlaySound(path_buf,  NULL, SND_ASYNC | SND_FILENAME);
+#else
 		__pid_t id = fork();
 		if (id == 0)
 		{
 			execlp("play", "play", "-q", path_buf, (char*)0);
 			exit(0);
 		}
-	}
+#endif
 #else
 #error "Not implement ..."
 #endif
+	}
 }
 
 bool Chess::on_drawarea_button_press_event(GdkEventButton *event)
@@ -1049,8 +1056,15 @@ void Chess::response_move(void)
 	}
 
 	if (_ai_level == 1)
+#ifdef __GNUC__
+#ifdef __MINGW__
+		Sleep(800);
+#else
 		usleep(800000);
-
+#endif
+#else
+#error "not implement..."
+#endif
 	gdk_threads_enter();
 	_statusbar->pop();
 	_window->get_window()->set_cursor();

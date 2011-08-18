@@ -22,12 +22,12 @@ SHARE = $(DESTDIR)/usr/share/cnchess
 DESKTOP = $(DESTDIR)/usr/share/applications
 
 INCFLAGS =
-LDFLAGS =
+LDFLAGS = -mwindows
 LIBS = -lstdc++ \
 	`pkg-config gtkmm-2.4 --libs` \
 	`pkg-config gthread-2.0 --libs` \
 	`pkg-config librsvg-2.0 --libs` \
-	-ltlib
+	-ltlib -lwinmm
 
 
 po_dirs := $(shell find ./po -maxdepth 1 -type d)
