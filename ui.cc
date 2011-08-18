@@ -14,8 +14,16 @@
 
 #include "engine.h"
 #include <gtkmm.h>
-#if defined(__gnu_linux__)
-#include <linux/limits.h>
+#if defined(__GNUC__)
+#  if defined(__MINGW32__)
+#    define _WIN32_WINNT 0x0500
+#    define WINVER 0x0500
+#    include <windows.h>
+#    include <direct.h>
+#    include <limits.h>
+#  else
+#    include <linux/limits.h>
+#  endif
 #endif
 #include <gdk/gdkkeysyms.h>
 #include <gtkmm/accelmap.h>
@@ -111,7 +119,7 @@ private:
 inline Chess::Chess(int argc, char** argv)
 {
 	// 得到应用程序所在路径
-#if defined(__gnu_linux__)
+#if defined(__GNUC__)
 	if (argv[0][0] != '/')
 	{
 		char buffer[PATH_MAX];
@@ -135,9 +143,9 @@ inline Chess::Chess(int argc, char** argv)
 	GError *err;
 	_svg = rsvg_handle_new_from_data(svg_data, svg_data_length, &err);
 	// 加载配置文件
-#if defined(__gnu_linux__)
+#if defined(__GNUC__)
 	const char* home = getenv("HOME");
-#elif defined(__WIN32__)
+#elif defined(__MSVC__)
 	const char* home = getenv("USERPROFILE");
 #else
 #error "not implement..."
@@ -879,7 +887,7 @@ inline void Chess::refresh()
 
 inline void Chess::playsound(const char* filename)
 {
-#ifdef __linux__
+#ifdef __GNUC__
 	if (_voice)
 	{
 		char path_buf[PATH_MAX] = {0};
