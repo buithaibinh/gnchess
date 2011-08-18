@@ -1057,7 +1057,7 @@ void Chess::response_move(void)
 
 	if (_ai_level == 1)
 #ifdef __GNUC__
-#ifdef __MINGW__
+#ifdef __MINGW32__
 		Sleep(800);
 #else
 		usleep(800000);
