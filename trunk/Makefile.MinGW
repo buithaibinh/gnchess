@@ -39,7 +39,7 @@ installpo_dirs := $(addprefix _inst_,$(po_dirs))
 all: cnchess $(po_dirs)
 
 cnchess: $(OBJECTS)
-	$(CC) -o cnchess $(LDFLAGS) $(LIBS) $(OBJECTS)
+	$(CC) -o cnchess $(OBJECTS) $(LDFLAGS) $(LIBS)
 
 .SUFFIXES:
 .SUFFIXES:	.cc .o

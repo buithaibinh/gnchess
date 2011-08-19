@@ -10,25 +10,23 @@
 
 # Depends: thorlib(> 0.1), gtkmm-2.4, librsvg-2.0
 
-CC = gcc
+CC = g++
 # CFLAGS = -DNDEBUG -O2 -Wall
-CFLAGS = -g -Wall \
-	`pkg-config gtkmm-2.4 --cflags` \
-	`pkg-config librsvg-2.0 --cflags`
+CFLAGS = -g -Wall
 
 OBJECTS = ui.o engine.o icon.o ui_data.o svg_res.o
 BIN = $(DESTDIR)/usr/bin
 SHARE = $(DESTDIR)/usr/share/cnchess
 DESKTOP = $(DESTDIR)/usr/share/applications
 
-INCFLAGS =
+INCFLAGS = `pkg-config gtkmm-2.4 --cflags` \
+	`pkg-config librsvg-2.0 --cflags`
+	
 LDFLAGS =
-LIBS = -lstdc++ \
-	`pkg-config gtkmm-2.4 --libs` \
-	`pkg-config gthread-2.0 --libs` \
-	`pkg-config librsvg-2.0 --libs` \
-	-ltlib
 
+LIBS = `pkg-config gtkmm-2.4 --libs` \
+	`pkg-config gthread-2.0 --libs` \
+	`pkg-config librsvg-2.0 --libs` -ltlib
 
 po_dirs := $(shell find ./po -maxdepth 1 -type d)
 po_dirs := $(basename $(patsubst ./po%,%,$(po_dirs)))
@@ -39,7 +37,7 @@ installpo_dirs := $(addprefix _inst_,$(po_dirs))
 all: cnchess $(po_dirs)
 
 cnchess: $(OBJECTS)
-	$(CC) -o cnchess $(LDFLAGS) $(LIBS) $(OBJECTS)
+	$(CC) -o cnchess $(OBJECTS) $(LDFLAGS) $(LIBS) 
 
 .SUFFIXES:
 .SUFFIXES:	.cc .o
