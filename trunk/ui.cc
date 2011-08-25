@@ -868,13 +868,21 @@ inline void Chess::msgbox(const char* msg)
 		return;
 	if (_window)
 	{
+#ifdef __WIN32__
+		MessageBoxA(NULL, msg, "cnchess", MB_OK | MB_ICONINFO);
+#else
 		Gtk::MessageDialog dlg(*_window.operator->(), msg);
 		dlg.run();
+#endif
 	}
 	else
 	{
+#ifdef __WIN32__
+		MessageBoxA(NULL, msg, "cnchess", MB_OK | MB_ICONINFO);
+#else
 		Gtk::MessageDialog dlg(msg);
 		dlg.run();
+#endif
 	}
 }
 
