@@ -10,24 +10,25 @@
 
 # Depends: thorlib(> 0.1), gtkmm-2.4, librsvg-2.0
 
-CC = gcc
+CC = g++
 # CFLAGS = -DNDEBUG -O2 -Wall
-CFLAGS = -g -Wall \
-	`pkg-config gtkmm-2.4 --cflags` \
-	`pkg-config librsvg-2.0 --cflags`
+CFLAGS = -Wall -mthreads
 
 OBJECTS = ui.o engine.o icon.o ui_data.o svg_res.o
 BIN = $(DESTDIR)/usr/bin
 SHARE = $(DESTDIR)/usr/share/cnchess
 DESKTOP = $(DESTDIR)/usr/share/applications
 
-INCFLAGS =
-LDFLAGS = -mwindows
-LIBS = -lstdc++ \
+INCFLAGS = -I/usr/include -I/usr/local/include \
+	`pkg-config gtkmm-2.4 --cflags` \
+	`pkg-config librsvg-2.0 --cflags`
+	
+LDFLAGS = -mthreads -mwindows
+
+LIBS = -ltlib \
 	`pkg-config gtkmm-2.4 --libs` \
 	`pkg-config gthread-2.0 --libs` \
-	`pkg-config librsvg-2.0 --libs` \
-	-ltlib -lwinmm
+	`pkg-config librsvg-2.0 --libs` -lwinmm
 
 
 po_dirs := $(shell find ./po -maxdepth 1 -type d)
