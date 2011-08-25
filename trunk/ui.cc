@@ -121,24 +121,7 @@ private:
 inline Chess::Chess(int argc, char** argv)
 {
 	// 得到应用程序所在路径
-#if defined(__GNUC__)
-	if (argv[0][0] != '/')
-	{
-		char buffer[PATH_MAX];
-		_exe_path = getcwd(buffer, PATH_MAX);
-		_exe_path += "/";
-		_exe_path += argv[0];
-	}
-	else
-	{
-		_exe_path = argv[0];
-	}
-	tlib::replace<char>(_exe_path, "/./", "/");
-	_exe_path = _exe_path.substr(0, _exe_path.rfind('/'));
-#else
-#error "not implement..."
-#endif
-
+	_exe_path = tlib::get_exec_path();
 	// 创建引擎
 	_engine = Engine::create();
 	// 加载 SVG 资源
@@ -146,7 +129,11 @@ inline Chess::Chess(int argc, char** argv)
 	_svg = rsvg_handle_new_from_data(svg_data, svg_data_length, &err);
 	// 加载配置文件
 #if defined(__GNUC__)
+#if defined(__MINGW32__)
+	const char* home = getenv("USERPROFILE");
+#else
 	const char* home = getenv("HOME");
+#endif
 #elif defined(__MSVC__)
 	const char* home = getenv("USERPROFILE");
 #else
@@ -156,6 +143,7 @@ inline Chess::Chess(int argc, char** argv)
 	_ai_level = 2;
 	_voice = true;
 	_music = true;
+	msgbox(home);
 	if (home)
 	{
 		_setting_file = home;
@@ -891,22 +879,23 @@ inline void Chess::playsound(const char* filename)
 {
 	if (_voice)
 	{
-
 #ifdef __GNUC__
 		char path_buf[PATH_MAX] = {0};
 		//strcpy(path_buf, _exe_path.c_str());
 		strcpy(path_buf, "/usr/share/cnchess/sound/");
 		strcat(path_buf, filename);
-#ifdef __MINGW32__
-		PlaySound(path_buf,  NULL, SND_ASYNC | SND_FILENAME);
-#else
+#  ifdef __MINGW32__
+		PlaySound((_exe_path + "\\sound\\" + filename).c_str(),  NULL, SND_ASYNC | SND_FILENAME);
+#  else
 		__pid_t id = fork();
 		if (id == 0)
 		{
 			execlp("play", "play", "-q", path_buf, (char*)0);
 			exit(0);
 		}
-#endif
+#  endif
+#elif defined(__MSVC__)
+		PlaySound((_exe_path + "\\sound\\" + filename).c_str(),  NULL, SND_ASYNC | SND_FILENAME);
 #else
 #error "Not implement ..."
 #endif
@@ -1148,7 +1137,13 @@ void Chess::response_move(void)
 int main(int argc, char **argv)
 {
 	setlocale (LC_MESSAGES, "");
+#if defined(__WIN32__)
+	bindtextdomain (PACKAGE, (tlib::get_exec_path() + "\\locale").c_str());
+#elif defined(__linux__)
 	bindtextdomain (PACKAGE, LOCALEDIR);
+#else
+#error "Not implement.."
+#endif
 	bind_textdomain_codeset(PACKAGE, "UTF-8");
 	textdomain (PACKAGE);
 
