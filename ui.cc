@@ -869,7 +869,7 @@ inline void Chess::msgbox(const char* msg)
 	if (_window)
 	{
 #ifdef __WIN32__
-		MessageBoxA(NULL, msg, "cnchess", MB_OK | MB_ICONINFO);
+		MessageBoxA(NULL, msg, "cnchess", MB_OK | MB_ICONINFORMATION);
 #else
 		Gtk::MessageDialog dlg(*_window.operator->(), msg);
 		dlg.run();
@@ -878,7 +878,7 @@ inline void Chess::msgbox(const char* msg)
 	else
 	{
 #ifdef __WIN32__
-		MessageBoxA(NULL, msg, "cnchess", MB_OK | MB_ICONINFO);
+		MessageBoxA(NULL, msg, "cnchess", MB_OK | MB_ICONINFORMATION);
 #else
 		Gtk::MessageDialog dlg(msg);
 		dlg.run();
