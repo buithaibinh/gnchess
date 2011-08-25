@@ -887,7 +887,11 @@ void Engine::load_book(void)
 	std::ifstream infs;
 	try
 	{
+#if defined(__WIN32__)
+		infs.open((tlib::get_exec_path() + "\\book.dat").c_str(), std::ios::in | std::ios::binary);
+#else
 		infs.open("/usr/share/cnchess/book.dat", std::ios::in | std::ios::binary);
+#endif
 		infs.read((char *)_book_table, BOOK_SIZE * sizeof(BookItem));
 		_book_size = infs.gcount() / sizeof(BookItem);
 		infs.close();
