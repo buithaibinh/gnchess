@@ -143,7 +143,6 @@ inline Chess::Chess(int argc, char** argv)
 	_ai_level = 2;
 	_voice = true;
 	_music = true;
-	msgbox(home);
 	if (home)
 	{
 		_setting_file = home;
@@ -865,8 +864,18 @@ bool Chess::on_drawarea_expose_event(GdkEventExpose *event)
 
 inline void Chess::msgbox(const char* msg)
 {
-	Gtk::MessageDialog dlg(*_window.operator->(), msg);
-	dlg.run();
+	if (!msg)
+		return;
+	if (_window)
+	{
+		Gtk::MessageDialog dlg(*_window.operator->(), msg);
+		dlg.run();
+	}
+	else
+	{
+		Gtk::MessageDialog dlg(msg);
+		dlg.run();
+	}
 }
 
 inline void Chess::refresh()
