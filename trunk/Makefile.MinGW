@@ -39,13 +39,16 @@ installpo_dirs := $(addprefix _inst_,$(po_dirs))
 
 all: cnchess $(po_dirs)
 
-cnchess: $(OBJECTS)
-	$(CC) -o cnchess $(OBJECTS) $(LDFLAGS) $(LIBS)
+cnchess: $(OBJECTS) icon.res
+	$(CC) -o cnchess icon.res $(OBJECTS) $(LDFLAGS) $(LIBS)
 
 .SUFFIXES:
 .SUFFIXES:	.cc .o
 
 sinclude ${OBJECTS:.o=.d}
+
+icon.res: icon.rc
+	windres -i icon.rc --input-format=rc -o icon.res -O coff
 
 icon.cc: icon.png
 	gdk-pixbuf-csource --name=icon_inline --extern --raw icon.png > icon.cc && \
