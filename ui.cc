@@ -869,7 +869,7 @@ inline void Chess::msgbox(const char* msg)
 	if (_window)
 	{
 #ifdef __WIN32__
-		MessageBoxA(NULL, msg, "cnchess", MB_OK | MB_ICONINFORMATION);
+		MessageBoxA(NULL, tlib::utf8_to_locale(msg).c_str(), "cnchess", MB_OK | MB_ICONINFORMATION);
 #else
 		Gtk::MessageDialog dlg(*_window.operator->(), msg);
 		dlg.run();
